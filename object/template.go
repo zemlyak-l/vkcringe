@@ -1,6 +1,6 @@
 package object
 
-type MessageTemplate struct {
+type Template struct {
 	Type     string            `json:"type"`
 	Elements []TemplateElement `json:"elements"`
 }

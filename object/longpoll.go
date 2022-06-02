@@ -1,9 +1,17 @@
 package object
 
+import "encoding/json"
+
+type GetServerMessage struct {
+	GroupID int `json:"group_id"`
+}
+
 type LongpollMessage struct {
-	Type    string                 `json:"type"`
-	Object  map[string]interface{} `json:"object"`
-	GroupID int                    `json:"group_id"`
+	Type    string          `json:"type"`
+	Object  json.RawMessage `json:"object"`
+	GroupID int             `json:"group_id"`
+	EventID string          `json:"event_id"`
+	Secret  string          `json:"secret"`
 }
 
 type LongpollResponse struct {

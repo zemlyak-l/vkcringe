@@ -1,6 +1,6 @@
 package object
 
-type MessageKeyboard struct {
+type Keyboard struct {
 	AuthorID int                `json:"author_id,omitempty"`
 	Buttons  [][]KeyboardButton `json:"buttons"`
 	OneTime  bool               `json:"one_time,omitempty"`
