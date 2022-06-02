@@ -14,7 +14,7 @@ type Routes struct {
 	MessageEvent                  func(object.MessageEventObject)
 	PhotoNew                      func(object.Photo)
 	PhotoCommentNew               func(object.PhotoCommentNewObject)
-	PhotoCommentEdit              func(object.PhotoCommentNewObject)
+	PhotoCommentEdit              func(object.PhotoCommentEditObject)
 	PhotoCommentRestore           func(object.PhotoCommentRestoreObject)
 	PhotoCommentDelete            func(object.PhotoCommentDeleteObject)
 	AudioNew                      func(object.AudioNewObject)
