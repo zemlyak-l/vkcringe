@@ -66,7 +66,7 @@ type MarketCommentDeleteObject struct {
 
 type GroupLeaveObject struct {
 	UserID int  `json:"user_id"`
-	Self   bool `json:"self"`
+	Self   Bool `json:"self"`
 }
 
 type GroupJoinObject struct {

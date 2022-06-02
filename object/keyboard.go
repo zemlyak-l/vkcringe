@@ -3,8 +3,8 @@ package object
 type Keyboard struct {
 	AuthorID int                `json:"author_id,omitempty"`
 	Buttons  [][]KeyboardButton `json:"buttons"`
-	OneTime  bool               `json:"one_time,omitempty"`
-	Inline   bool               `json:"inline,omitempty"`
+	OneTime  Bool               `json:"one_time,omitempty"`
+	Inline   Bool               `json:"inline,omitempty"`
 }
 
 type KeyboardButton struct {

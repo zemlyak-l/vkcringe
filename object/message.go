@@ -33,14 +33,14 @@ type MessageForward struct {
 	PeerID                 int   `schema:"peer_id"`
 	ConservationMessageIDs []int `schema:"conversation_message_ids"`
 	MessageIDs             []int `schema:"message_ids"`
-	IsReply                bool  `schema:"is_reply"`
+	IsReply                Bool  `schema:"is_reply"`
 }
 
 type MessageKeyboard struct {
 	AuthorID int                       `schema:"author_id,omitempty"`
 	Buttons  [][]MessageKeyboardButton `schema:"buttons"`
-	OneTime  bool                      `schema:"one_time,omitempty"`
-	Inline   bool                      `schema:"inline,omitempty"`
+	OneTime  Bool                      `schema:"one_time,omitempty"`
+	Inline   Bool                      `schema:"inline,omitempty"`
 }
 
 type MessageKeyboardButton struct {
@@ -95,11 +95,11 @@ type MessagePhoto struct {
 	Text               string              `schema:"text"`
 	UserID             int                 `schema:"user_id"`
 	Width              int                 `schema:"width"`
-	CanUpload          bool                `schema:"can_upload"`
-	CommentsDisabled   bool                `schema:"comments_disabled"`
-	ThumbIsLast        bool                `schema:"thumb_is_last"`
-	UploadByAdminsOnly bool                `schema:"upload_by_admins_only"`
-	HasTags            bool                `schema:"has_tags"`
+	CanUpload          Bool                `schema:"can_upload"`
+	CommentsDisabled   Bool                `schema:"comments_disabled"`
+	ThumbIsLast        Bool                `schema:"thumb_is_last"`
+	UploadByAdminsOnly Bool                `schema:"upload_by_admins_only"`
+	HasTags            Bool                `schema:"has_tags"`
 	Created            int                 `schema:"created"`
 	Description        string              `schema:"description"`
 	PrivacyComment     []string            `schema:"privacy_comment"`

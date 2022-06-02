@@ -14,11 +14,11 @@ type Photo struct {
 	Text               string       `json:"text"`
 	UserID             int          `json:"user_id"`
 	Width              int          `json:"width"`
-	CanUpload          bool         `json:"can_upload"`
-	CommentsDisabled   bool         `json:"comments_disabled"`
-	ThumbIsLast        bool         `json:"thumb_is_last"`
-	UploadByAdminsOnly bool         `json:"upload_by_admins_only"`
-	HasTags            bool         `json:"has_tags"`
+	CanUpload          Bool         `json:"can_upload"`
+	CommentsDisabled   Bool         `json:"comments_disabled"`
+	ThumbIsLast        Bool         `json:"thumb_is_last"`
+	UploadByAdminsOnly Bool         `json:"upload_by_admins_only"`
+	HasTags            Bool         `json:"has_tags"`
 	Created            int          `json:"created"`
 	Description        string       `json:"description"`
 	PrivacyComment     []string     `json:"privacy_comment"`
@@ -30,6 +30,17 @@ type Photo struct {
 	Title              string       `json:"title"`
 	Updated            int          `json:"updated"`
 	Color              string       `json:"color"`
+}
+
+type PhotoAlbum struct {
+	Created     int         `json:"created"`     // Date when the album has been created in Unixtime
+	Description string      `json:"description"` // Photo album description
+	ID          int         `json:"id"`          // Photo album ID
+	OwnerID     int         `json:"owner_id"`    // Album owner's ID
+	Size        int         `json:"size"`        // Photos number
+	Thumb       Photo `json:"thumb"`
+	Title       string      `json:"title"`   // Photo album title
+	Updated     int         `json:"updated"` // Date when the album has been updated last time in Unixtime
 }
 
 type PhotoSizes struct {
@@ -47,3 +58,8 @@ type BaseImage struct {
 	Width  float64 `json:"width"`
 	Type   string  `json:"type"`
 }
+
+type PhotoNewObject Photo
+type PhotoCommentNewObject WallWallComment
+type PhotoCommentEditObject WallWallComment
+type PhotoCommentRestoreObject WallWallComment

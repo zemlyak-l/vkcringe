@@ -12,16 +12,16 @@ type NewMessage struct {
 	FromID                int           `json:"from_id"`
 	FwdMessages           []NewMessage  `json:"fwd_Messages"`
 	ReplyMessage          *NewMessage   `json:"reply_message"`
-	Geo                   bool          `json:"geo"`
+	Geo                   Bool          `json:"geo"`
 	PinnedAt              int           `json:"pinned_at,omitempty"`
 	ID                    int           `json:"id"`
-	Deleted               bool          `json:"deleted"`
-	Important             bool          `json:"important"`
-	IsHidden              bool          `json:"is_hidden"`
-	IsCropped             bool          `json:"is_cropped"`
-	IsSilent              bool          `json:"is_silent"`
+	Deleted               Bool          `json:"deleted"`
+	Important             Bool          `json:"important"`
+	IsHidden              Bool          `json:"is_hidden"`
+	IsCropped             Bool          `json:"is_cropped"`
+	IsSilent              Bool          `json:"is_silent"`
 	Out                   int           `json:"out"`
-	WasListened           bool          `json:"was_listened,omitempty"`
+	WasListened           Bool          `json:"was_listened,omitempty"`
 	Payload               string        `json:"payload"`
 	PeerID                int           `json:"peer_id"`
 	RandomID              int           `json:"random_id"`
