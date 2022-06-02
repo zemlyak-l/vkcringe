@@ -2,7 +2,6 @@ package polling
 
 import (
 	"encoding/json"
-	"log"
 
 	"github.com/zemlyak-l/vkgottle/object"
 )
@@ -66,15 +65,7 @@ const (
 	DonutMoneyWithdrawError       = "donut_money_withdraw_error"
 )
 
-func (lp *Longpoll) CheckEvents() {
-	for event := range lp.NewEvent {
-		if err := lp.checkCurrentEvent(event); err != nil {
-			log.Fatal(err)
-		}
-	}
-}
-
-func (lp *Longpoll) checkCurrentEvent(event object.LongpollMessage) error {
+func (lp *Longpoll) CheckEvent(event object.LongpollMessage) error {
 	switch event.Type {
 	case MessageNew:
 		message := object.MessageJson{}

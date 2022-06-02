@@ -14,11 +14,10 @@ const (
 )
 
 type Longpoll struct {
-	Api      *api.Api
-	Params   url.Values
-	Server   string
-	NewEvent chan object.LongpollMessage
-	Routes   *Routes
+	Api    *api.Api
+	Params url.Values
+	Server string
+	Routes *Routes
 }
 
 func NewLongpoll(api *api.Api, groupID int) (*Longpoll, error) {
@@ -41,11 +40,10 @@ func NewLongpoll(api *api.Api, groupID int) (*Longpoll, error) {
 
 	// Init Longpoll struct
 	return &Longpoll{
-		Api:      api,
-		Params:   urlParams,
-		Server:   r.Response.Server,
-		NewEvent: make(chan object.LongpollMessage),
-		Routes:   &Routes{},
+		Api:    api,
+		Params: urlParams,
+		Server: r.Response.Server,
+		Routes: &Routes{},
 	}, nil
 }
 
@@ -68,7 +66,6 @@ func (lp *Longpoll) Request() (*object.LongpollResponse, error) {
 
 func (lp *Longpoll) ListenNewEvents() {
 	// Listen new longpoll events
-	go lp.CheckEvents()
 	for {
 		// Create request
 		event, err := lp.Request()
@@ -80,7 +77,9 @@ func (lp *Longpoll) ListenNewEvents() {
 		}
 		// Check updates
 		for _, update := range event.Updates {
-			lp.NewEvent <- update
+			if err := lp.CheckEvent(update); err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 }
