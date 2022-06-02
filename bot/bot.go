@@ -9,10 +9,11 @@ import (
 type Bot struct {
 	Api           *api.Api
 	Longpoll      *polling.Longpoll
-	Routes        map[string]func(object.NewMessage)
+	Routes        *polling.Routes
+	AllRoutes     map[string]func(object.NewMessage)
 	PrivateRoutes map[string]func(object.NewMessage)
 	ChatRoutes    map[string]func(object.NewMessage)
-	AllHandler    func(object.NewMessage)
+	AllHandler    func(message object.NewMessage)
 }
 
 func NewBot(token string) (*Bot, error) {
@@ -33,17 +34,18 @@ func NewBot(token string) (*Bot, error) {
 	bot := &Bot{
 		Api:           api,
 		Longpoll:      lp,
-		Routes:        make(map[string]func(object.NewMessage)),
+		Routes:        lp.Routes,
+		AllRoutes:     make(map[string]func(object.NewMessage)),
 		PrivateRoutes: make(map[string]func(object.NewMessage)),
 		ChatRoutes:    make(map[string]func(object.NewMessage)),
 	}
-	bot.Longpoll.Routes.MessageNew = bot.messageHandler
+	bot.Routes.MessageNew = bot.messageHandler
 
 	return bot, nil
 }
 
 func (bot *Bot) messageHandler(message object.NewMessage) {
-	f, ok := bot.Routes[message.Text]
+	f, ok := bot.AllRoutes[message.Text]
 	if ok {
 		f(message)
 		return
@@ -66,14 +68,14 @@ func (bot *Bot) messageHandler(message object.NewMessage) {
 	}
 }
 
-func (bot *Bot) OnMessage(text string, f func(object.NewMessage)) {
-	bot.Routes[text] = f
+func (bot *Bot) OnMessage(text string, f func(message object.NewMessage)) {
+	bot.AllRoutes[text] = f
 }
 
-func (bot *Bot) OnPrivateMessage(text string, f func(object.NewMessage)) {
+func (bot *Bot) OnPrivateMessage(text string, f func(message object.NewMessage)) {
 	bot.PrivateRoutes[text] = f
 }
 
-func (bot *Bot) OnChatMessage(text string, f func(object.NewMessage)) {
+func (bot *Bot) OnChatMessage(text string, f func(message object.NewMessage)) {
 	bot.ChatRoutes[text] = f
 }

@@ -107,6 +107,14 @@ func (lp *Longpoll) CheckEvent(event object.LongpollMessage) error {
 		if lp.Routes.MessageDeny != nil {
 			lp.Routes.MessageDeny(obj)
 		}
+	case MessageTypingState:
+		obj := object.MessageTypingStateObject{}
+		if err := json.Unmarshal(event.Object, &obj); err != nil {
+			return err
+		}
+		if lp.Routes.MessageTypingState != nil {
+			lp.Routes.MessageTypingState(obj)
+		}
 	case MessageEvent:
 		obj := object.MessageEventObject{}
 		if err := json.Unmarshal(event.Object, &obj); err != nil {
