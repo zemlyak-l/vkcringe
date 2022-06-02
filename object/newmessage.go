@@ -20,7 +20,7 @@ type NewMessage struct {
 	IsHidden              bool          `json:"is_hidden"`
 	IsCropped             bool          `json:"is_cropped"`
 	IsSilent              bool          `json:"is_silent"`
-	Out                   bool          `json:"out"`
+	Out                   int           `json:"out"`
 	WasListened           bool          `json:"was_listened,omitempty"`
 	Payload               string        `json:"payload"`
 	PeerID                int           `json:"peer_id"`

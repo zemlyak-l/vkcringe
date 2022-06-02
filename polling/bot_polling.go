@@ -18,6 +18,7 @@ type Longpoll struct {
 	Params   url.Values
 	Server   string
 	NewEvent chan object.LongpollMessage
+	Routes   *Routes
 }
 
 func NewLongpoll(api *api.Api, groupID int) (*Longpoll, error) {
@@ -44,6 +45,7 @@ func NewLongpoll(api *api.Api, groupID int) (*Longpoll, error) {
 		Params:   urlParams,
 		Server:   r.Response.Server,
 		NewEvent: make(chan object.LongpollMessage),
+		Routes:   &Routes{},
 	}, nil
 }
 

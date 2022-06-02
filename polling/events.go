@@ -1,6 +1,11 @@
 package polling
 
-import "github.com/zemlyak-l/vkgottle/object"
+import (
+	"encoding/json"
+	"log"
+
+	"github.com/zemlyak-l/vkgottle/object"
+)
 
 const (
 	Confirmation                  = "confirmation"
@@ -63,13 +68,22 @@ const (
 
 func (lp *Longpoll) CheckEvents() {
 	for event := range lp.NewEvent {
-		checkCurrent(event)
+		if err := lp.checkCurrentEvent(event); err != nil {
+			log.Fatal(err)
+		}
 	}
 }
 
-func checkCurrent(event object.LongpollMessage) {
+func (lp *Longpoll) checkCurrentEvent(event object.LongpollMessage) error {
 	switch event.Type {
 	case MessageNew:
+		message := object.MessageJson{}
+		if err := json.Unmarshal(event.Object, &message); err != nil {
+			return err
+		}
+		if lp.Routes.MessageNew != nil {
+			lp.Routes.MessageNew(message.CurrentMessage)
+		}
 	case MessageReply:
 	case MessageEdit:
 	case MessageAllow:
@@ -124,4 +138,5 @@ func checkCurrent(event object.LongpollMessage) {
 	case DonutMoneyWithdraw:
 	case DonutMoneyWithdrawError:
 	}
+	return nil
 }

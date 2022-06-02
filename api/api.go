@@ -3,7 +3,6 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/url"
 	"time"
 
@@ -69,7 +68,6 @@ func (api *Api) Request(methodName string, data interface{}, target interface{})
 	}
 	urlEncoded := urlData.Encode()
 	encodedData := []byte(urlEncoded)
-	log.Println(string(encodedData))
 
 	return api.Post(
 		resUrl,

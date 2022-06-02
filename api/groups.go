@@ -9,3 +9,9 @@ func (api *Api) GroupsGetLongPollServer(
 ) error {
 	return api.Request("groups.getLongPollServer", message, target)
 }
+
+func (api *Api) GroupsGetByID(
+	req object.NewGetByID, target *object.GroupResponseSlice,
+) error {
+	return api.Request("groups.getById", req, target)
+}
