@@ -44,6 +44,10 @@ func NewBot(token string) (*Bot, error) {
 	return bot, nil
 }
 
+func (bot *Bot) RunSync() {
+	bot.Longpoll.ListenNewEvents()
+}
+
 func (bot *Bot) messageHandler(message object.NewMessage) {
 	f, ok := bot.AllRoutes[message.Text]
 	if ok {
@@ -66,6 +70,10 @@ func (bot *Bot) messageHandler(message object.NewMessage) {
 	if bot.AllHandler != nil {
 		bot.AllHandler(message)
 	}
+}
+
+func (bot *Bot) OnAll(f func(message object.NewMessage)) {
+	bot.AllHandler = f
 }
 
 func (bot *Bot) OnMessage(text string, f func(message object.NewMessage)) {

@@ -27,8 +27,8 @@ type User struct {
 	Domain                 string                `json:"domain"`
 	ScreenName             string                `json:"screen_name"`
 	Bdate                  string                `json:"bdate"`
-	City                   Object            `json:"city"`
-	Country                Object            `json:"country"`
+	City                   Object                `json:"city"`
+	Country                Object                `json:"country"`
 	Photo50                string                `json:"photo_50"`
 	Photo100               string                `json:"photo_100"`
 	Photo200               string                `json:"photo_200"`
@@ -39,33 +39,33 @@ type User struct {
 	PhotoID                string                `json:"photo_id"`
 	FriendStatus           int                   `json:"friend_status"` // see FriendStatus const
 	OnlineApp              int                   `json:"online_app"`
-	Online                 Bool           `json:"online"`
-	OnlineMobile           Bool           `json:"online_mobile"`
-	HasPhoto               Bool           `json:"has_photo"`
-	HasMobile              Bool           `json:"has_mobile"`
-	IsClosed               Bool           `json:"is_closed"`
-	IsFriend               Bool           `json:"is_friend"`
-	IsFavorite             Bool           `json:"is_favorite"`
-	IsHiddenFromFeed       Bool           `json:"is_hidden_from_feed"`
-	CanAccessClosed        Bool           `json:"can_access_closed"`
-	CanBeInvitedGroup      Bool           `json:"can_be_invited_group"`
-	CanPost                Bool           `json:"can_post"`
-	CanSeeAllPosts         Bool           `json:"can_see_all_posts"`
-	CanSeeAudio            Bool           `json:"can_see_audio"`
-	CanWritePrivateMessage Bool           `json:"can_write_private_message"`
-	CanSendFriendRequest   Bool           `json:"can_send_friend_request"`
-	CanCallFromGroup       Bool           `json:"can_call_from_group"`
-	Verified               Bool           `json:"verified"`
-	Trending               Bool           `json:"trending"`
-	Blacklisted            Bool           `json:"blacklisted"`
-	BlacklistedByMe        Bool           `json:"blacklisted_by_me"`
+	Online                 Bool                  `json:"online"`
+	OnlineMobile           Bool                  `json:"online_mobile"`
+	HasPhoto               Bool                  `json:"has_photo"`
+	HasMobile              Bool                  `json:"has_mobile"`
+	IsClosed               Bool                  `json:"is_closed"`
+	IsFriend               Bool                  `json:"is_friend"`
+	IsFavorite             Bool                  `json:"is_favorite"`
+	IsHiddenFromFeed       Bool                  `json:"is_hidden_from_feed"`
+	CanAccessClosed        Bool                  `json:"can_access_closed"`
+	CanBeInvitedGroup      Bool                  `json:"can_be_invited_group"`
+	CanPost                Bool                  `json:"can_post"`
+	CanSeeAllPosts         Bool                  `json:"can_see_all_posts"`
+	CanSeeAudio            Bool                  `json:"can_see_audio"`
+	CanWritePrivateMessage Bool                  `json:"can_write_private_message"`
+	CanSendFriendRequest   Bool                  `json:"can_send_friend_request"`
+	CanCallFromGroup       Bool                  `json:"can_call_from_group"`
+	Verified               Bool                  `json:"verified"`
+	Trending               Bool                  `json:"trending"`
+	Blacklisted            Bool                  `json:"blacklisted"`
+	BlacklistedByMe        Bool                  `json:"blacklisted_by_me"`
 	Facebook               string                `json:"facebook"`
 	FacebookName           string                `json:"facebook_name"`
 	Twitter                string                `json:"twitter"`
 	Instagram              string                `json:"instagram"`
 	Site                   string                `json:"site"`
 	Status                 string                `json:"status"`
-	StatusAudio            Audio            `json:"status_audio"`
+	StatusAudio            Audio                 `json:"status_audio"`
 	LastSeen               UsersLastSeen         `json:"last_seen"`
 	CropPhoto              UsersCropPhoto        `json:"crop_photo"`
 	FollowersCount         int                   `json:"followers_count"`
@@ -121,7 +121,6 @@ type UsersUserMin struct {
 	LastName    string `json:"last_name"`   // User last name
 }
 
-
 type UsersCareer struct {
 	CityID    int    `json:"city_id"`    // City ID
 	CityName  string `json:"city_name"`  // City name
@@ -135,12 +134,12 @@ type UsersCareer struct {
 }
 
 type UsersOnlineInfo struct {
-	AppID    int         `json:"app_id"`
-	LastSeen int         `json:"last_seen"`
-	Status   string      `json:"status"`
-	Visible  Bool `json:"visible"`
-	IsOnline Bool `json:"is_online"`
-	IsMobile Bool `json:"is_mobile"`
+	AppID    int    `json:"app_id"`
+	LastSeen int    `json:"last_seen"`
+	Status   string `json:"status"`
+	Visible  Bool   `json:"visible"`
+	IsOnline Bool   `json:"is_online"`
+	IsMobile Bool   `json:"is_mobile"`
 }
 
 type UsersLastSeen struct {
@@ -268,7 +267,7 @@ type UsersUserLim struct {
 
 type UsersCropPhoto struct {
 	Crop  UsersCropPhotoCrop `json:"crop"`
-	Photo Photo        `json:"photo"`
+	Photo Photo              `json:"photo"`
 	Rect  UsersCropPhotoRect `json:"rect"`
 }
 
