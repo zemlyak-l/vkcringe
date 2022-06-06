@@ -1,6 +1,8 @@
 package object
 
 type NewMessage struct {
+	CmdArgs []string `json:"-"`
+
 	AdminAuthorID int `json:"admin_author_id"`
 	Action        struct {
 		MemberID int    `json:"member_id"`

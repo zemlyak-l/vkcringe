@@ -1,19 +1,18 @@
 package bot
 
 import (
+	"strings"
+
 	"github.com/zemlyak-l/vkgottle/api"
 	"github.com/zemlyak-l/vkgottle/object"
 	"github.com/zemlyak-l/vkgottle/polling"
 )
 
 type Bot struct {
-	Api           *api.Api
-	Longpoll      *polling.Longpoll
-	Routes        *polling.Routes
-	AllRoutes     map[string]func(object.NewMessage)
-	PrivateRoutes map[string]func(object.NewMessage)
-	ChatRoutes    map[string]func(object.NewMessage)
-	AllHandler    func(message object.NewMessage)
+	Api        *api.Api
+	Longpoll   *polling.Longpoll
+	Routes     *polling.Routes
+	TextRoutes *TextRoutes
 }
 
 func NewBot(token string) (*Bot, error) {
@@ -32,12 +31,10 @@ func NewBot(token string) (*Bot, error) {
 	}
 
 	bot := &Bot{
-		Api:           api,
-		Longpoll:      lp,
-		Routes:        lp.Routes,
-		AllRoutes:     make(map[string]func(object.NewMessage)),
-		PrivateRoutes: make(map[string]func(object.NewMessage)),
-		ChatRoutes:    make(map[string]func(object.NewMessage)),
+		Api:        api,
+		Longpoll:   lp,
+		Routes:     lp.Routes,
+		TextRoutes: NewTextRoutes(),
 	}
 	bot.Routes.MessageNew = bot.messageHandler
 
@@ -49,41 +46,30 @@ func (bot *Bot) RunSync() {
 }
 
 func (bot *Bot) messageHandler(message object.NewMessage) {
-	f, ok := bot.AllRoutes[message.Text]
+	cmdArgs := strings.Split(message.Text, " ")
+	cmdName := cmdArgs[0]
+	if len(cmdArgs) != 1 {
+		message.CmdArgs = cmdArgs[1:]
+	}
+	f, ok := bot.TextRoutes.AllRoutes[cmdName]
 	if ok {
 		f(message)
 		return
 	}
 	if message.PeerID < 2000000000 {
-		pf, ok := bot.PrivateRoutes[message.Text]
+		pf, ok := bot.TextRoutes.PrivateRoutes[cmdName]
 		if ok {
 			pf(message)
 			return
 		}
 	} else {
-		cf, ok := bot.ChatRoutes[message.Text]
+		cf, ok := bot.TextRoutes.ChatRoutes[cmdName]
 		if ok {
 			cf(message)
 			return
 		}
 	}
-	if bot.AllHandler != nil {
-		bot.AllHandler(message)
+	if bot.TextRoutes.AllHandler != nil {
+		bot.TextRoutes.AllHandler(message)
 	}
-}
-
-func (bot *Bot) OnAll(f func(message object.NewMessage)) {
-	bot.AllHandler = f
-}
-
-func (bot *Bot) OnMessage(text string, f func(message object.NewMessage)) {
-	bot.AllRoutes[text] = f
-}
-
-func (bot *Bot) OnPrivateMessage(text string, f func(message object.NewMessage)) {
-	bot.PrivateRoutes[text] = f
-}
-
-func (bot *Bot) OnChatMessage(text string, f func(message object.NewMessage)) {
-	bot.ChatRoutes[text] = f
 }
