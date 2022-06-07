@@ -53,23 +53,23 @@ func (bot *Bot) messageHandler(message object.NewMessage) {
 	}
 	f, ok := bot.TextRoutes.AllRoutes[cmdName]
 	if ok {
-		f(message)
+		go f(message)
 		return
 	}
 	if message.PeerID < 2000000000 {
 		pf, ok := bot.TextRoutes.PrivateRoutes[cmdName]
 		if ok {
-			pf(message)
+			go pf(message)
 			return
 		}
 	} else {
 		cf, ok := bot.TextRoutes.ChatRoutes[cmdName]
 		if ok {
-			cf(message)
+			go cf(message)
 			return
 		}
 	}
 	if bot.TextRoutes.AllHandler != nil {
-		bot.TextRoutes.AllHandler(message)
+		go bot.TextRoutes.AllHandler(message)
 	}
 }
