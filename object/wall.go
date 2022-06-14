@@ -1,6 +1,6 @@
 package object
 
-type  WallWallpost struct {
+type WallWallpost struct {
 	AccessKey      string                   `json:"access_key"` // Access key to private object
 	ID             int                      `json:"id"`         // Post ID
 	OwnerID        int                      `json:"owner_id"`   // Wall owner's ID
@@ -11,24 +11,24 @@ type  WallWallpost struct {
 	ReplyOwnerID   int                      `json:"reply_owner_id"`
 	ReplyPostID    int                      `json:"reply_post_id"`
 	FriendsOnly    int                      `json:"friends_only"`
-	Comments       CommentsInfo         `json:"comments"`
-	Likes          LikesInfo            `json:"likes"`   // Count of likes
-	Reposts        RepostsInfo          `json:"reposts"` // Count of reposts
+	Comments       CommentsInfo             `json:"comments"`
+	Likes          LikesInfo                `json:"likes"`   // Count of likes
+	Reposts        RepostsInfo              `json:"reposts"` // Count of reposts
 	Views          WallViews                `json:"views"`   // Count of views
 	PostType       string                   `json:"post_type"`
 	PostSource     WallPostSource           `json:"post_source"`
 	Attachments    []WallWallpostAttachment `json:"attachments"`
-	Geo            Geo                  `json:"geo"`
+	Geo            Geo                      `json:"geo"`
 	SignerID       int                      `json:"signer_id"` // Post signer ID
 	CopyHistory    []WallWallpost           `json:"copy_history"`
-	CanPin         Bool              `json:"can_pin"`
-	CanDelete      Bool              `json:"can_delete"`
-	CanEdit        Bool              `json:"can_edit"`
-	IsPinned       Bool              `json:"is_pinned"`
-	IsFavorite     Bool              `json:"is_favorite"` // Information whether the post in favorites list
-	IsArchived     Bool              `json:"is_archived"` // Is post archived, only for post owners
-	IsDeleted      Bool              `json:"is_deleted"`
-	MarkedAsAds    Bool              `json:"marked_as_ads"`
+	CanPin         Bool                     `json:"can_pin"`
+	CanDelete      Bool                     `json:"can_delete"`
+	CanEdit        Bool                     `json:"can_edit"`
+	IsPinned       Bool                     `json:"is_pinned"`
+	IsFavorite     Bool                     `json:"is_favorite"` // Information whether the post in favorites list
+	IsArchived     Bool                     `json:"is_archived"` // Is post archived, only for post owners
+	IsDeleted      Bool                     `json:"is_deleted"`
+	MarkedAsAds    Bool                     `json:"marked_as_ads"`
 	Edited         int                      `json:"edited"` // Date of editing in Unixtime
 	Copyright      WallPostCopyright        `json:"copyright"`
 	PostID         int                      `json:"post_id"`
@@ -66,10 +66,10 @@ type WallWallComment struct {
 }
 
 type WallWallpostDonut struct {
-	IsDonut            Bool          `json:"is_donut"`
-	CanPublishFreeCopy Bool          `json:"can_publish_free_copy"`
-	PaidDuration       int                  `json:"paid_duration"`
-	EditMode           string               `json:"edit_mode"`
+	IsDonut            Bool             `json:"is_donut"`
+	CanPublishFreeCopy Bool             `json:"can_publish_free_copy"`
+	PaidDuration       int              `json:"paid_duration"`
+	EditMode           string           `json:"edit_mode"`
 	Durations          []ObjectWithName `json:"durations"`
 }
 
@@ -87,7 +87,7 @@ type WallWallCommentDonut struct {
 }
 
 type WallCommentAttachment struct {
-	Audio    Audio        `json:"audio"`
+	Audio    Audio             `json:"audio"`
 	Doc      Doc               `json:"doc"`
 	Link     Link              `json:"link"`
 	Note     WallAttachedNote  `json:"note"`
@@ -125,30 +125,30 @@ type WallViews struct {
 }
 
 type WallWallpostAttachment struct {
-	AccessKey         string            `json:"access_key"` // Access key for the audio
-	Album             PhotoAlbum  `json:"album"`
-	App               WallAppPost       `json:"app"`
-	Audio             Audio        `json:"audio"`
-	Doc               Doc           `json:"doc"`
-	Event             EventsEventAttach `json:"event"`
-	Graffiti          WallGraffiti      `json:"graffiti"`
-	Link              Link          `json:"link"`
-	Note              WallAttachedNote  `json:"note"`
-	Page              PagesWikipageFull `json:"page"`
-	Photo             Photo       `json:"photo"`
-	PhotosList        []string          `json:"photos_list"`
-	Poll              Poll         `json:"poll"`
-	PostedPhoto       WallPostedPhoto   `json:"posted_photo"`
-	Type              string            `json:"type"`
-	Video             Video        `json:"video"`
+	AccessKey   string            `json:"access_key"` // Access key for the audio
+	Album       PhotoAlbum        `json:"album"`
+	App         WallAppPost       `json:"app"`
+	Audio       Audio             `json:"audio"`
+	Doc         Doc               `json:"doc"`
+	Event       EventsEventAttach `json:"event"`
+	Graffiti    WallGraffiti      `json:"graffiti"`
+	Link        Link              `json:"link"`
+	Note        WallAttachedNote  `json:"note"`
+	Page        PagesWikipageFull `json:"page"`
+	Photo       Photo             `json:"photo"`
+	PhotosList  []string          `json:"photos_list"`
+	Poll        Poll              `json:"poll"`
+	PostedPhoto WallPostedPhoto   `json:"posted_photo"`
+	Type        string            `json:"type"`
+	Video       Video             `json:"video"`
 }
 
 type WallPostSource struct {
-	Link     Link `json:"link"`
-	Data     string   `json:"data"`     // Additional data
-	Platform string   `json:"platform"` // Platform name
-	Type     string   `json:"type"`
-	URL      string   `json:"url"` // URL to an external site used to publish the post
+	Link     Link   `json:"link"`
+	Data     string `json:"data"`     // Additional data
+	Platform string `json:"platform"` // Platform name
+	Type     string `json:"type"`
+	URL      string `json:"url"` // URL to an external site used to publish the post
 }
 
 type WallPostedPhoto struct {
@@ -171,7 +171,6 @@ type WallAppPost struct {
 	Photo130 string `json:"photo_130"` // URL of the preview image with 130 px in width
 	Photo604 string `json:"photo_604"` // URL of the preview image with 604 px in width
 }
-
 
 type WallWallpostHeader struct {
 	Type              string                              `json:"type"`

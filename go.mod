@@ -1,4 +1,4 @@
-module github.com/zemlyak-l/vkgottle
+module github.com/zemlyak-l/vkcringe
 
 go 1.18
 

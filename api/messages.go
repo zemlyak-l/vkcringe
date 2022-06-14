@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/zemlyak-l/vkgottle/object"
+	"github.com/zemlyak-l/vkcringe/object"
 )
 
 func (api *Api) MessagesSend(message *object.Message) error {

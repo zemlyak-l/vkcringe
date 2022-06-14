@@ -10,21 +10,21 @@ type Poll struct {
 	Votes         int             `json:"votes"`    // Votes number
 	AnswerIDs     []int           `json:"answer_ids"`
 	EndDate       int             `json:"end_date"`
-	Anonymous     Bool     `json:"anonymous"` // Information whether the pole is anonymous
-	Closed        Bool     `json:"closed"`
-	IsBoard       Bool     `json:"is_board"`
-	CanEdit       Bool     `json:"can_edit"`
-	CanVote       Bool     `json:"can_vote"`
-	CanReport     Bool     `json:"can_report"`
-	CanShare      Bool     `json:"can_share"`
-	Multiple      Bool     `json:"multiple"`
-	DisableUnvote Bool     `json:"disable_unvote"`
-	Photo         Photo     `json:"photo"`
+	Anonymous     Bool            `json:"anonymous"` // Information whether the pole is anonymous
+	Closed        Bool            `json:"closed"`
+	IsBoard       Bool            `json:"is_board"`
+	CanEdit       Bool            `json:"can_edit"`
+	CanVote       Bool            `json:"can_vote"`
+	CanReport     Bool            `json:"can_report"`
+	CanShare      Bool            `json:"can_share"`
+	Multiple      Bool            `json:"multiple"`
+	DisableUnvote Bool            `json:"disable_unvote"`
+	Photo         Photo           `json:"photo"`
 	AuthorID      int             `json:"author_id"`
 	Background    PollsBackground `json:"background"`
 	Friends       []PollsFriend   `json:"friends"`
-	Profiles      []User     `json:"profiles"`
-	Groups        []Group   `json:"groups"`
+	Profiles      []User          `json:"profiles"`
+	Groups        []Group         `json:"groups"`
 	EmbedHash     string          `json:"embed_hash"`
 }
 
@@ -60,4 +60,3 @@ type PollsBackground struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
-

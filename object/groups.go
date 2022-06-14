@@ -7,7 +7,6 @@ import (
 	"reflect"
 )
 
-
 type NewGetByID struct {
 	GroupIDs string `schema:"group_ids,omitempty"`
 	GroupID  int    `schema:"group_id,omitempty"`
@@ -86,7 +85,7 @@ type GroupsAddressTimetableDay struct {
 // GroupsAddressesInfo struct.
 type GroupsAddressesInfo struct {
 	IsEnabled     Bool `json:"is_enabled"`      // Information whether addresses is enabled
-	MainAddressID int         `json:"main_address_id"` // Main address id for group
+	MainAddressID int  `json:"main_address_id"` // Main address id for group
 }
 
 // Group AdminLevel type.
@@ -153,8 +152,8 @@ type Group struct {
 	StartDate    int              `json:"start_date,omitempty"`  // Start date in Unixtime format
 	Market       GroupsMarketInfo `json:"market,omitempty"`
 	MemberStatus int              `json:"member_status,omitempty"` // Current user's member status
-	City         Object       `json:"city,omitempty"`
-	Country      Country      `json:"country,omitempty"`
+	City         Object           `json:"city,omitempty"`
+	Country      Country          `json:"country,omitempty"`
 
 	// Information whether current user is administrator.
 	IsAdmin Bool `json:"is_admin"`
@@ -217,7 +216,7 @@ type Group struct {
 	Verified            Bool `json:"verified,omitempty"` // Information whether community is verified
 
 	// Information whether the community has a fire pictogram.
-	Trending     Bool         `json:"trending,omitempty"`
+	Trending     Bool                `json:"trending,omitempty"`
 	Description  string              `json:"description,omitempty"`   // Community description
 	WikiPage     string              `json:"wiki_page,omitempty"`     // Community's main wiki page title
 	MembersCount int                 `json:"members_count,omitempty"` // Community members number
@@ -235,7 +234,7 @@ type Group struct {
 	MainSection     int                  `json:"main_section,omitempty"`
 	OnlineStatus    GroupsOnlineStatus   `json:"online_status,omitempty"` // Status of replies in community messages
 	AgeLimits       int                  `json:"age_limits,omitempty"`    // Information whether age limit
-	BanInfo         GroupBanInfo   `json:"ban_info,omitempty"`      // User ban info
+	BanInfo         GroupBanInfo         `json:"ban_info,omitempty"`      // User ban info
 	Addresses       GroupsAddressesInfo  `json:"addresses,omitempty"`     // Info about addresses in Groups
 	LiveCovers      GroupsLiveCovers     `json:"live_covers,omitempty"`
 	CropPhoto       UsersCropPhoto       `json:"crop_photo,omitempty"`
@@ -245,17 +244,17 @@ type Group struct {
 	PublicDateLabel string               `json:"public_date_label,omitempty"`
 	AuthorID        int                  `json:"author_id,omitempty"`
 	Phone           string               `json:"phone,omitempty"`
-	Like            GroupLike      `json:"like"`
+	Like            GroupLike            `json:"like"`
 }
 
 // ToMention return mention.
-func (group Group) ToMention() string {
+func (group *Group) ToMention() string {
 	return fmt.Sprintf("[club%d|%s]", group.ID, group.Name)
 }
 
 // GroupLike struct.
 type GroupLike struct {
-	IsLiked Bool            `json:"is_liked"`
+	IsLiked Bool             `json:"is_liked"`
 	Friends GroupLikeFriends `json:"friends"`
 }
 
@@ -267,9 +266,9 @@ type GroupLikeFriends struct {
 
 // GroupsLiveCovers struct.
 type GroupsLiveCovers struct {
-	IsEnabled  Bool `json:"is_enabled"`
-	IsScalable Bool `json:"is_scalable"`
-	StoryIds   []string    `json:"story_ids"`
+	IsEnabled  Bool     `json:"is_enabled"`
+	IsScalable Bool     `json:"is_scalable"`
+	StoryIds   []string `json:"story_ids"`
 }
 
 // GroupsBanInfo reason type.
@@ -283,12 +282,12 @@ const (
 
 // GroupsBanInfo struct.
 type GroupsBanInfo struct {
-	AdminID        int         `json:"admin_id"` // Administrator ID
-	Comment        string      `json:"comment"`  // Comment for a ban
-	Date           int         `json:"date"`     // Date when user has been added to blacklist in Unixtime
-	EndDate        int         `json:"end_date"` // Date when user will be removed from blacklist in Unixtime
-	Reason         int         `json:"reason"`
-	CommentVisible Bool `json:"comment_visible"`
+	AdminID        int    `json:"admin_id"` // Administrator ID
+	Comment        string `json:"comment"`  // Comment for a ban
+	Date           int    `json:"date"`     // Date when user has been added to blacklist in Unixtime
+	EndDate        int    `json:"end_date"` // Date when user will be removed from blacklist in Unixtime
+	Reason         int    `json:"reason"`
+	CommentVisible Bool   `json:"comment_visible"`
 }
 
 // GroupsCallbackServer struct.
@@ -355,7 +354,7 @@ func (personal *GroupsCountersGroup) UnmarshalJSON(data []byte) error {
 
 // GroupsCover struct.
 type GroupsCover struct {
-	Enabled Bool `json:"enabled"` // Information whether cover is enabled
+	Enabled Bool    `json:"enabled"` // Information whether cover is enabled
 	Images  []Image `json:"images"`
 }
 
@@ -367,16 +366,16 @@ type GroupBanInfo struct {
 
 // GroupCategory struct.
 type GroupCategory struct {
-	ID            int                  `json:"id"`   // Category ID
-	Name          string               `json:"name"` // Category name
+	ID            int              `json:"id"`   // Category ID
+	Name          string           `json:"name"` // Category name
 	Subcategories []ObjectWithName `json:"subcategories"`
 }
 
 // GroupCategoryFull struct.
 type GroupCategoryFull struct {
-	ID            int                       `json:"id"`         // Category ID
-	Name          string                    `json:"name"`       // Category name
-	PageCount     int                       `json:"page_count"` // Pages number
+	ID            int                 `json:"id"`         // Category ID
+	Name          string              `json:"name"`       // Category name
+	PageCount     int                 `json:"page_count"` // Pages number
 	PagePreviews  []Group             `json:"page_previews"`
 	Subcategories []GroupCategoryFull `json:"subcategories"`
 }
@@ -389,18 +388,18 @@ type GroupCategoryType struct {
 
 // GroupLink struct.
 type GroupLink struct {
-	Desc            string      `json:"desc"`             // Link description
-	EditTitle       Bool `json:"edit_title"`       // Information whether the title can be edited
-	ImageProcessing Bool `json:"image_processing"` // Information whether the image on processing
-	Name            string      `json:"name"`
-	ID              int         `json:"id"`  // Link ID
-	URL             string      `json:"url"` // Link URL
+	Desc            string `json:"desc"`             // Link description
+	EditTitle       Bool   `json:"edit_title"`       // Information whether the title can be edited
+	ImageProcessing Bool   `json:"image_processing"` // Information whether the image on processing
+	Name            string `json:"name"`
+	ID              int    `json:"id"`  // Link ID
+	URL             string `json:"url"` // Link URL
 }
 
 // GroupPublicCategoryList struct.
 type GroupPublicCategoryList struct {
-	ID            int                       `json:"id"`
-	Name          string                    `json:"name"`
+	ID            int                 `json:"id"`
+	Name          string              `json:"name"`
 	Subcategories []GroupCategoryType `json:"subcategories"`
 }
 
@@ -503,14 +502,14 @@ const (
 
 // GroupSettings struct.
 type GroupSettings struct {
-	Access             int                             `json:"access"`          // Community access settings
-	Address            string                          `json:"address"`         // Community's page domain
-	Audio              int                             `json:"audio"`           // Audio settings
-	Description        string                          `json:"description"`     // Community description
-	Docs               int                             `json:"docs"`            // Docs settings
-	ObsceneWords       []string                        `json:"obscene_words"`   // The list of stop words
-	Photos             int                             `json:"photos"`          // Photos settings
-	PublicCategory     int                             `json:"public_category"` // Information about the group category
+	Access             int                       `json:"access"`          // Community access settings
+	Address            string                    `json:"address"`         // Community's page domain
+	Audio              int                       `json:"audio"`           // Audio settings
+	Description        string                    `json:"description"`     // Community description
+	Docs               int                       `json:"docs"`            // Docs settings
+	ObsceneWords       []string                  `json:"obscene_words"`   // The list of stop words
+	Photos             int                       `json:"photos"`          // Photos settings
+	PublicCategory     int                       `json:"public_category"` // Information about the group category
 	PublicCategoryList []GroupPublicCategoryList `json:"public_category_list"`
 
 	// Information about the group subcategory.
@@ -557,9 +556,9 @@ type GroupSettings struct {
 
 // GroupsMarketServices struct.
 type GroupsMarketServices struct {
-	Enabled         Bool         `json:"enabled"`
-	CanMessage      Bool         `json:"can_message"`
-	CommentsEnabled Bool         `json:"comments_enabled"`
+	Enabled         Bool                `json:"enabled"`
+	CanMessage      Bool                `json:"can_message"`
+	CommentsEnabled Bool                `json:"comments_enabled"`
 	ContactID       int                 `json:"contact_id"`
 	Currency        MarketCurrency      `json:"currency"`
 	ViewType        GroupsSelectedItems `json:"view_type"`
@@ -569,7 +568,7 @@ type GroupsMarketServices struct {
 
 // GroupsSelectedItems struct.
 type GroupsSelectedItems struct {
-	SelectedItemID int64                `json:"selected_item_id"`
+	SelectedItemID int64            `json:"selected_item_id"`
 	Items          []ObjectWithName `json:"items"`
 }
 
@@ -596,19 +595,19 @@ type GroupsYoulaSubcategory struct {
 
 // GroupsYoulaSettings struct.
 type GroupsYoulaSettings struct {
-	IsActive              Bool `json:"is_active"`
-	IsModerated           Bool `json:"is_moderated"`
-	ShowModerationSetting Bool `json:"show_moderation_setting"`
-	ModerationStatus      int         `json:"moderation_status"`
-	DeclineReason         string      `json:"decline_reason"`
-	GroupMode             int         `json:"group_mode"`
-	SelectedCategoryIDS   []int       `json:"selected_category_ids"`
-	Lat                   float64     `json:"lat"`
-	Long                  float64     `json:"long"`
-	Radius                float64     `json:"radius"`
-	RadiusArea            string      `json:"radius_area"`
-	Address               string      `json:"address"`
-	Radiuses              []float64   `json:"radiuses"`
+	IsActive              Bool      `json:"is_active"`
+	IsModerated           Bool      `json:"is_moderated"`
+	ShowModerationSetting Bool      `json:"show_moderation_setting"`
+	ModerationStatus      int       `json:"moderation_status"`
+	DeclineReason         string    `json:"decline_reason"`
+	GroupMode             int       `json:"group_mode"`
+	SelectedCategoryIDS   []int     `json:"selected_category_ids"`
+	Lat                   float64   `json:"lat"`
+	Long                  float64   `json:"long"`
+	Radius                float64   `json:"radius"`
+	RadiusArea            string    `json:"radius_area"`
+	Address               string    `json:"address"`
+	Radiuses              []float64 `json:"radiuses"`
 }
 
 // GroupsSectionsList struct.
@@ -712,35 +711,35 @@ type GroupsActionButtonTarget struct {
 
 // GroupXtrInvitedBy struct.
 type GroupXtrInvitedBy struct {
-	AdminLevel   int         `json:"admin_level"`
-	ID           int         `json:"id"`          // Community ID
-	InvitedBy    int         `json:"invited_by"`  // Inviter ID
-	Name         string      `json:"name"`        // Community name
-	Photo100     string      `json:"photo_100"`   // URL of square photo of the community with 100 pixels in width
-	Photo200     string      `json:"photo_200"`   // URL of square photo of the community with 200 pixels in width
-	Photo50      string      `json:"photo_50"`    // URL of square photo of the community with 50 pixels in width
-	ScreenName   string      `json:"screen_name"` // Domain of the community page
-	Type         string      `json:"type"`
-	IsClosed     int         `json:"is_closed"`     // Information whether community is closed
-	IsAdmin      Bool `json:"is_admin"`      // Information whether current user is manager
-	IsMember     Bool `json:"is_member"`     // Information whether current user is member
-	IsAdvertiser Bool `json:"is_advertiser"` // Information whether current user is advertiser
+	AdminLevel   int    `json:"admin_level"`
+	ID           int    `json:"id"`          // Community ID
+	InvitedBy    int    `json:"invited_by"`  // Inviter ID
+	Name         string `json:"name"`        // Community name
+	Photo100     string `json:"photo_100"`   // URL of square photo of the community with 100 pixels in width
+	Photo200     string `json:"photo_200"`   // URL of square photo of the community with 200 pixels in width
+	Photo50      string `json:"photo_50"`    // URL of square photo of the community with 50 pixels in width
+	ScreenName   string `json:"screen_name"` // Domain of the community page
+	Type         string `json:"type"`
+	IsClosed     int    `json:"is_closed"`     // Information whether community is closed
+	IsAdmin      Bool   `json:"is_admin"`      // Information whether current user is manager
+	IsMember     Bool   `json:"is_member"`     // Information whether current user is member
+	IsAdvertiser Bool   `json:"is_advertiser"` // Information whether current user is advertiser
 }
 
 // ToMention return mention.
-func (group GroupXtrInvitedBy) ToMention() string {
+func (group *GroupXtrInvitedBy) ToMention() string {
 	return fmt.Sprintf("[club%d|%s]", group.ID, group.Name)
 }
 
 // GroupsLinksItem struct.
 type GroupsLinksItem struct {
-	Desc      string      `json:"desc"`       // Link description
-	EditTitle Bool `json:"edit_title"` // Information whether the link title can be edited
-	ID        int         `json:"id"`         // Link ID
-	Name      string      `json:"name"`       // Link title
-	Photo100  string      `json:"photo_100"`  // URL of square image of the link with 100 pixels in width
-	Photo50   string      `json:"photo_50"`   // URL of square image of the link with 50 pixels in width
-	URL       string      `json:"url"`        // Link URL
+	Desc      string `json:"desc"`       // Link description
+	EditTitle Bool   `json:"edit_title"` // Information whether the link title can be edited
+	ID        int    `json:"id"`         // Link ID
+	Name      string `json:"name"`       // Link title
+	Photo100  string `json:"photo_100"`  // URL of square image of the link with 100 pixels in width
+	Photo50   string `json:"photo_50"`   // URL of square image of the link with 50 pixels in width
+	URL       string `json:"url"`        // Link URL
 }
 
 // GroupsLongPollEvents struct.
@@ -824,7 +823,7 @@ func (lp GroupsLongPollServer) GetURL(wait int) string {
 type GroupsLongPollSettings struct {
 	APIVersion string               `json:"api_version"` // API version used for the events
 	Events     GroupsLongPollEvents `json:"events"`
-	IsEnabled  Bool          `json:"is_enabled"` // Shows whether Long Poll is enabled
+	IsEnabled  Bool                 `json:"is_enabled"` // Shows whether Long Poll is enabled
 }
 
 // GroupsMarketType ...
@@ -844,10 +843,10 @@ type GroupsMarketInfo struct {
 	ContactID       int               `json:"contact_id,omitempty"` // Contact person ID
 	Currency        MarketCurrency    `json:"currency,omitempty"`
 	CurrencyText    string            `json:"currency_text,omitempty"` // Currency name
-	Enabled         Bool       `json:"enabled"`                 // Information whether the market is enabled
-	CommentsEnabled Bool       `json:"comments_enabled,omitempty"`
-	CanMessage      Bool       `json:"can_message,omitempty"`
-	IsHsEnabled     Bool       `json:"is_hs_enabled,omitempty"`
+	Enabled         Bool              `json:"enabled"`                 // Information whether the market is enabled
+	CommentsEnabled Bool              `json:"comments_enabled,omitempty"`
+	CanMessage      Bool              `json:"can_message,omitempty"`
+	IsHsEnabled     Bool              `json:"is_hs_enabled,omitempty"`
 	MainAlbumID     int               `json:"main_album_id,omitempty"` // Main market album ID
 	PriceMax        string            `json:"price_max,omitempty"`     // Maximum price
 	PriceMin        string            `json:"price_min,omitempty"`     // Minimum price
@@ -881,9 +880,9 @@ type GroupsMemberRoleXtrUser struct {
 
 // GroupsMemberStatus struct.
 type GroupsMemberStatus struct {
-	Member      Bool `json:"member"`  // Information whether user is a member of the group
-	UserID      int         `json:"user_id"` // User ID
-	Permissions []string    `json:"permissions"`
+	Member      Bool     `json:"member"`  // Information whether user is a member of the group
+	UserID      int      `json:"user_id"` // User ID
+	Permissions []string `json:"permissions"`
 }
 
 // GroupsMemberStatusFull struct.
@@ -893,7 +892,7 @@ type GroupsMemberStatusFull struct {
 	Request    Bool `json:"request"`    // Information whether user has send request to the group
 	CanInvite  Bool `json:"can_invite"` // Information whether user can be invite
 	CanRecall  Bool `json:"can_recall"` // Information whether user's invite to the group can be recalled
-	UserID     int         `json:"user_id"`    // User ID
+	UserID     int  `json:"user_id"`    // User ID
 }
 
 // GroupsOnlineStatus Status type.
@@ -912,8 +911,8 @@ type GroupsOnlineStatus struct {
 // GroupsOwnerXtrBanInfo struct.
 type GroupsOwnerXtrBanInfo struct {
 	BanInfo GroupsBanInfo `json:"ban_info"`
-	Group   Group   `json:"group"`
-	Profile User     `json:"profile"`
+	Group   Group         `json:"group"`
+	Profile User          `json:"profile"`
 	Type    string        `json:"type"`
 }
 
@@ -941,4 +940,3 @@ type GroupsTag struct {
 	Name  string `json:"name"`
 	Color string `json:"color"`
 }
-

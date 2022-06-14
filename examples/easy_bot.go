@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/zemlyak-l/vkgottle/bot"
-	"github.com/zemlyak-l/vkgottle/object"
+	"github.com/zemlyak-l/vkcringe/bot"
+	"github.com/zemlyak-l/vkcringe/object"
 )
 
 const (

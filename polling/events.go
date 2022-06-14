@@ -3,7 +3,7 @@ package polling
 import (
 	"encoding/json"
 
-	"github.com/zemlyak-l/vkgottle/object"
+	"github.com/zemlyak-l/vkcringe/object"
 )
 
 const (

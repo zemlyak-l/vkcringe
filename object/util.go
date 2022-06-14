@@ -128,36 +128,35 @@ type Sticker struct {
 }
 
 type CommentsInfo struct {
-	Count         int         `json:"count"`
+	Count         int  `json:"count"`
 	CanPost       Bool `json:"can_post"`
 	GroupsCanPost Bool `json:"groups_can_post"`
 	CanClose      Bool `json:"can_close"`
 	CanOpen       Bool `json:"can_open"`
 }
 
-
 type Geo struct {
-	Coordinates string    `json:"coordinates"`
-	Place       Place `json:"place"`
-	Showmap     int       `json:"showmap"`
-	Type        string    `json:"type"`
+	Coordinates string `json:"coordinates"`
+	Place       Place  `json:"place"`
+	Showmap     int    `json:"showmap"`
+	Type        string `json:"type"`
 }
 
 type Place struct {
-	Address        string             `json:"address"`
-	Checkins       int                `json:"checkins"`
-	City           interface{}        `json:"city"` // BUG(VK): https://github.com/VKCOM/vk-api-schema/issues/143
-	Country        interface{}        `json:"country"`
-	Created        int                `json:"created"`
-	ID             int                `json:"id"`
-	Icon           string             `json:"icon"`
-	Latitude       float64            `json:"latitude"`
-	Longitude      float64            `json:"longitude"`
-	Title          string             `json:"title"`
-	Type           string             `json:"type"`
-	IsDeleted      Bool        `json:"is_deleted"`
-	TotalCheckins  int                `json:"total_checkins"`
-	Updated        int                `json:"updated"`
+	Address        string         `json:"address"`
+	Checkins       int            `json:"checkins"`
+	City           interface{}    `json:"city"` // BUG(VK): https://github.com/VKCOM/vk-api-schema/issues/143
+	Country        interface{}    `json:"country"`
+	Created        int            `json:"created"`
+	ID             int            `json:"id"`
+	Icon           string         `json:"icon"`
+	Latitude       float64        `json:"latitude"`
+	Longitude      float64        `json:"longitude"`
+	Title          string         `json:"title"`
+	Type           string         `json:"type"`
+	IsDeleted      Bool           `json:"is_deleted"`
+	TotalCheckins  int            `json:"total_checkins"`
+	Updated        int            `json:"updated"`
 	CategoryObject CategoryObject `json:"category_object"`
 }
 
@@ -173,14 +172,14 @@ type Object struct {
 }
 
 type EventsEventAttach struct {
-	Address      string      `json:"address,omitempty"`       // address of event
-	ButtonText   string      `json:"button_text"`             // text of attach
-	Friends      []int       `json:"friends"`                 // array of friends ids
-	ID           int         `json:"id"`                      // event ID
-	IsFavorite   Bool `json:"is_favorite"`             // is favorite
-	MemberStatus int         `json:"member_status,omitempty"` // Current user's member status
-	Text         string      `json:"text"`                    // text of attach
-	Time         int         `json:"time,omitempty"`          // event start time
+	Address      string `json:"address,omitempty"`       // address of event
+	ButtonText   string `json:"button_text"`             // text of attach
+	Friends      []int  `json:"friends"`                 // array of friends ids
+	ID           int    `json:"id"`                      // event ID
+	IsFavorite   Bool   `json:"is_favorite"`             // is favorite
+	MemberStatus int    `json:"member_status,omitempty"` // Current user's member status
+	Text         string `json:"text"`                    // text of attach
+	Time         int    `json:"time,omitempty"`          // event start time
 }
 
 type Country struct {

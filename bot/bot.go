@@ -1,9 +1,9 @@
 package bot
 
 import (
-	"github.com/zemlyak-l/vkgottle/api"
-	"github.com/zemlyak-l/vkgottle/object"
-	"github.com/zemlyak-l/vkgottle/polling"
+	"github.com/zemlyak-l/vkcringe/api"
+	"github.com/zemlyak-l/vkcringe/object"
+	"github.com/zemlyak-l/vkcringe/polling"
 )
 
 type Bot struct {

@@ -3,7 +3,7 @@ package bot
 import (
 	"strings"
 
-	"github.com/zemlyak-l/vkgottle/object"
+	"github.com/zemlyak-l/vkcringe/object"
 )
 
 type HandlerFunc func(object.NewMessage)

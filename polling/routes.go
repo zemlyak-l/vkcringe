@@ -1,7 +1,7 @@
 package polling
 
 import (
-	"github.com/zemlyak-l/vkgottle/object"
+	"github.com/zemlyak-l/vkcringe/object"
 )
 
 type Routes struct {

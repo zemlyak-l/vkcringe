@@ -33,14 +33,14 @@ type Photo struct {
 }
 
 type PhotoAlbum struct {
-	Created     int         `json:"created"`     // Date when the album has been created in Unixtime
-	Description string      `json:"description"` // Photo album description
-	ID          int         `json:"id"`          // Photo album ID
-	OwnerID     int         `json:"owner_id"`    // Album owner's ID
-	Size        int         `json:"size"`        // Photos number
-	Thumb       Photo `json:"thumb"`
-	Title       string      `json:"title"`   // Photo album title
-	Updated     int         `json:"updated"` // Date when the album has been updated last time in Unixtime
+	Created     int    `json:"created"`     // Date when the album has been created in Unixtime
+	Description string `json:"description"` // Photo album description
+	ID          int    `json:"id"`          // Photo album ID
+	OwnerID     int    `json:"owner_id"`    // Album owner's ID
+	Size        int    `json:"size"`        // Photos number
+	Thumb       Photo  `json:"thumb"`
+	Title       string `json:"title"`   // Photo album title
+	Updated     int    `json:"updated"` // Date when the album has been updated last time in Unixtime
 }
 
 type PhotoSizes struct {
