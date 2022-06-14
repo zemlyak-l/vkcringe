@@ -6,6 +6,8 @@ import (
 	"github.com/zemlyak-l/vkcringe/object"
 )
 
+const ChatPeerID = 2000000000
+
 type HandlerFunc func(object.NewMessage)
 type HandlerFuncMap map[string]HandlerFunc
 
@@ -69,12 +71,14 @@ func (bot *Bot) messageHandler(message object.NewMessage) {
 	if len(cmdArgs) != 1 {
 		message.CmdArgs = cmdArgs[1:]
 	}
+
 	bot.TextRoutes.checkRoute("all", cmdName)
-	if message.PeerID < 2000000000 {
+	if message.PeerID < ChatPeerID {
 		bot.TextRoutes.checkRoute("private", cmdName)
 	} else {
 		bot.TextRoutes.checkRoute("chat", cmdName)
 	}
+
 	if bot.TextRoutes.sent != nil {
 		go bot.TextRoutes.sent(message)
 	} else {
