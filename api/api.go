@@ -16,7 +16,8 @@ const (
 )
 
 type Api struct {
-	Params  string
+	Token   string
+	Version string
 	Url     string
 	Client  *fasthttp.Client
 	Encoder *schema.Encoder
@@ -24,12 +25,10 @@ type Api struct {
 
 func NewApi(token string) *Api {
 	// Init Api struct
-	params := fmt.Sprintf(
-		"?access_token=%s&v=%s", token, baseApiVersion,
-	)
 	return &Api{
-		Url:    baseApiUrl,
-		Params: params,
+		Url:     baseApiUrl,
+		Token:   token,
+		Version: baseApiVersion,
 		Client: &fasthttp.Client{
 			ReadTimeout:              5 * time.Second,
 			WriteTimeout:             5 * time.Second,
@@ -42,7 +41,11 @@ func NewApi(token string) *Api {
 
 func (api *Api) Method(methodName string, data map[string]string, target interface{}) error {
 	// Call to vk api method
-	resUrl := api.Url + methodName + api.Params
+	params := fmt.Sprintf(
+		"?access_token=%s&v=%s",
+		api.Token, api.Version,
+	)
+	resUrl := api.Url + methodName + params
 
 	urlParams := url.Values{}
 	for key, value := range data {
@@ -61,7 +64,11 @@ func (api *Api) Method(methodName string, data map[string]string, target interfa
 
 func (api *Api) Request(methodName string, data interface{}, target interface{}) error {
 	// Call to vk api method
-	resUrl := api.Url + methodName + api.Params
+	params := fmt.Sprintf(
+		"?access_token=%s&v=%s",
+		api.Token, api.Version,
+	)
+	resUrl := api.Url + methodName + params
 	urlData := url.Values{}
 	if err := api.Encoder.Encode(data, urlData); err != nil {
 		return err
