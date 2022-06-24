@@ -14,7 +14,8 @@ type HandlerFuncMap map[string]HandlerFunc
 func EmptyHandlerFunc(object.NewMessage) {}
 
 type TextRoutes struct {
-	sent HandlerFunc
+	sentFunc HandlerFunc
+	isSent   bool
 
 	AllRoutes     map[string]HandlerFunc
 	PrivateRoutes map[string]HandlerFunc
@@ -28,6 +29,7 @@ func NewRoutes() *TextRoutes {
 		PrivateRoutes: make(HandlerFuncMap),
 		ChatRoutes:    make(HandlerFuncMap),
 		AllHandler:    EmptyHandlerFunc,
+		isSent:        false,
 	}
 }
 
@@ -44,8 +46,9 @@ func (t *TextRoutes) checkRoute(routeType string, cmd string) {
 		f, ok = t.ChatRoutes[cmd]
 	}
 
-	if ok && t.sent == nil {
-		t.sent = f
+	if ok && !t.isSent {
+		t.isSent = true
+		t.sentFunc = f
 	}
 }
 
@@ -79,8 +82,9 @@ func (bot *Bot) messageHandler(message object.NewMessage) {
 		bot.TextRoutes.checkRoute("chat", cmdName)
 	}
 
-	if bot.TextRoutes.sent != nil {
-		go bot.TextRoutes.sent(message)
+	if bot.TextRoutes.isSent {
+		bot.TextRoutes.isSent = false
+		go bot.TextRoutes.sentFunc(message)
 	} else {
 		go bot.TextRoutes.AllHandler(message)
 	}

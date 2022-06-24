@@ -28,6 +28,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	bot.OnPrivateMessage("/eat", func(message object.NewMessage) {
 		randIndex := rand.Intn(len(fruits))
 		randValue := fruits[randIndex]
@@ -37,6 +38,7 @@ func main() {
 			Text:   answer,
 		})
 	})
+
 	bot.Routes.MessageTypingState = func(event object.MessageTypingStateObject) {
 		users := &object.UsersGetResponse{}
 		strUserID := strconv.Itoa(event.FromID)
